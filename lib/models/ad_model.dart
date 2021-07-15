@@ -7,8 +7,9 @@ class AdModel {
 
   Future<InitializationStatus> initialization;
 
-  String get bannerAdUnitId =>
-      Platform.isAndroid ? "ca-app-pub-3940256099942544/6300978111" : "ios";
+  String get bannerAdUnitId => Platform.isAndroid
+      ? "ca-app-pub-3940256099942544/6300978111"
+      : "ca-app-pub-3940256099942544/2934735716";
 
   AdListener get adListener => _adListener;
 

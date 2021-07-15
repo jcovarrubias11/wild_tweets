@@ -63,7 +63,7 @@ Future<void> main() async {
     name: 'wild_tweets',
     options: Platform.isIOS || Platform.isMacOS
         ? FirebaseOptions(
-            appId: '1:23778610035:android:2e83bd26660c603834d306',
+            appId: '1:23778610035:ios:2e83bd26660c603834d306',
             apiKey: 'AIzaSyCLG7odc-rkcckNZUyFByCU97ALrcXaa70',
             projectId: 'wildtweets-e54d7',
             messagingSenderId: '',

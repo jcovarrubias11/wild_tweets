@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:crazy_tweets_2/auth_widget.dart';
 import 'package:crazy_tweets_2/frontend/pages/home/home.dart';
 import 'package:crazy_tweets_2/frontend/pages/landing/landing.dart';
@@ -57,6 +58,8 @@ final adProvider = StateNotifierProvider<AdProvider>((ref) => AdProvider());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   final initFuture = MobileAds.instance.initialize();
 
   await Firebase.initializeApp(

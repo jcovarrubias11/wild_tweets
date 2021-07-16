@@ -60,9 +60,9 @@ final adProvider = StateNotifierProvider<AdProvider>((ref) => AdProvider());
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigReader.initialize();
+  final initFuture = MobileAds.instance.initialize();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  final initFuture = MobileAds.instance.initialize();
 
   await Firebase.initializeApp(
     name: 'wild_tweets',

@@ -8,64 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:23778610035:android:2e83bd26660c603834d306",
-        "android_client_info": {
-          "package_name": "com.example.crazy_tweets"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDxJj_hW9gHw3_XLSLtE3-wyDZ0BVEBKIA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:23778610035:android:f4bdb66d0fb88ca834d306",
-        "android_client_info": {
-          "package_name": "com.example.crazy_tweets_2"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDxJj_hW9gHw3_XLSLtE3-wyDZ0BVEBKIA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:23778610035:android:29474bee121288a334d306",
         "android_client_info": {
           "package_name": "com.example.wild_tweets"
@@ -96,6 +38,49 @@
             {
               "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "23778610035-59fon2vj7ldltic89nqdsp5f6lngjham.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.crazyTweets2"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23778610035:android:d0bef141c8a1ca8a34d306",
+        "android_client_info": {
+          "package_name": "com.jc.crazy_tweets_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxJj_hW9gHw3_XLSLtE3-wyDZ0BVEBKIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23778610035-mcju93tqtbvfkn845h1gvaqfkcmfadvq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "23778610035-59fon2vj7ldltic89nqdsp5f6lngjham.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.crazyTweets2"
+              }
             }
           ]
         }

@@ -70,13 +70,14 @@ flutter:
     - assets/images/69312-neeson-caricature-celebrity-draw-mark-zuckerberg-liam-thumb.png
     - assets/images/trump_tairedOfWinning_600px-1.png
     - assets/images/app_icon.png
+    - config/
 
 flutter_icons:
   image_path_android: "assets/images/app_icon.png"
   image_path_ios: "assets/images/app_icon.png"
   android: true # can specify file name here e.g. "ic_launcher"
   ios: true # can specify file name here e.g. "My-Launcher-Icon"
-  adaptive_icon_background: "#ffffff"
+  adaptive_icon_background: #ffffff
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

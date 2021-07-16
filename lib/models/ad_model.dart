@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:crazy_tweets_2/utils/config_reader.dart';
 
 class AdModel {
   AdModel(this.initialization);
@@ -8,8 +9,8 @@ class AdModel {
   Future<InitializationStatus> initialization;
 
   String get bannerAdUnitId => Platform.isAndroid
-      ? "ca-app-pub-6504908522392672/5394412199"
-      : "ca-app-pub-6504908522392672/6798813960";
+      ? ConfigReader.getAndroidAdId()
+      : ConfigReader.getiOSAdId();
 
   AdListener get adListener => _adListener;
 

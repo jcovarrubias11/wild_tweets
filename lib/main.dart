@@ -9,6 +9,7 @@ import 'package:crazy_tweets_2/services/auth_services.dart';
 import 'package:crazy_tweets_2/router/app_router.dart';
 import 'package:crazy_tweets_2/constants/theme_data.dart';
 import 'package:crazy_tweets_2/services/database_service.dart';
+import 'package:crazy_tweets_2/utils/config_reader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -58,6 +59,7 @@ final adProvider = StateNotifierProvider<AdProvider>((ref) => AdProvider());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ConfigReader.initialize();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   final initFuture = MobileAds.instance.initialize();
@@ -66,18 +68,18 @@ Future<void> main() async {
     name: 'wild_tweets',
     options: Platform.isIOS || Platform.isMacOS
         ? FirebaseOptions(
-            appId: '1:23778610035:ios:2e83bd26660c603834d306',
-            apiKey: 'AIzaSyCLG7odc-rkcckNZUyFByCU97ALrcXaa70',
-            projectId: 'wildtweets-e54d7',
+            appId: ConfigReader.getiOSAppId(),
+            apiKey: ConfigReader.getApiKey(),
+            projectId: ConfigReader.getProjectId(),
             messagingSenderId: '',
-            databaseURL: 'https://wildtweets-e54d7.firebaseio.com/',
+            databaseURL: ConfigReader.getDatabaseURL(),
           )
         : FirebaseOptions(
-            appId: '1:23778610035:android:2e83bd26660c603834d306',
-            apiKey: 'AIzaSyCLG7odc-rkcckNZUyFByCU97ALrcXaa70',
+            appId: ConfigReader.getAndroidAppId(),
+            apiKey: ConfigReader.getApiKey(),
             messagingSenderId: '',
-            projectId: 'wildtweets-e54d7',
-            databaseURL: 'https://wildtweets-e54d7.firebaseio.com/',
+            projectId: ConfigReader.getProjectId(),
+            databaseURL: ConfigReader.getDatabaseURL(),
           ),
   );
 

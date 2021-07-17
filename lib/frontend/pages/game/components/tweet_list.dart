@@ -14,7 +14,6 @@ class TweetList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final playerState = useProvider(playerStateProvider);
     final gameState = useProvider(gameStateProvider);
 
     // ignore: unused_local_variable

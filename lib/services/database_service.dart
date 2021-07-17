@@ -40,6 +40,7 @@ class FirebaseDatabaseService {
                       : matchExists = true
                 }
             })
+        // ignore: return_of_invalid_type_from_catch_error
         .catchError((error) => {print(error)});
     //
     // start trying to create lobby and push to firebase
@@ -64,6 +65,7 @@ class FirebaseDatabaseService {
             "playersDone": [""]
           })
           .then((value) => {playerProvider.createdLobby(_lobbyCode, player)})
+          // ignore: return_of_invalid_type_from_catch_error
           .catchError((onError) => print(onError.toString()));
     } else {
       _playersCreate.add(playerStats);
@@ -86,6 +88,7 @@ class FirebaseDatabaseService {
           })
           // .then((value) => state = Player(_lobbyCode, player, true, true))
           .then((value) => {playerProvider.createdLobby(_lobbyCode, player)})
+          // ignore: return_of_invalid_type_from_catch_error
           .catchError((onError) => print(onError.toString()));
     }
     //
@@ -140,6 +143,7 @@ class FirebaseDatabaseService {
                                   AppRoutes.lobbyPage,
                                 )
                               })
+                          // ignore: return_of_invalid_type_from_catch_error
                           .catchError((onError) => print(onError.toString()))
                     }
                   else
@@ -154,6 +158,7 @@ class FirebaseDatabaseService {
                       "Oops! Lobby Doesn't Exist. Check Lobby Entry And Make Sure It's Correct.")
                 }
             })
+        // ignore: return_of_invalid_type_from_catch_error
         .catchError((error) => {print(error)});
   }
 

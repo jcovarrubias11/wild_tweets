@@ -1,4 +1,3 @@
-import 'package:crazy_tweets_2/frontend/pages/lobby/lobby.dart';
 import 'package:crazy_tweets_2/main.dart';
 import 'package:crazy_tweets_2/models/lobby_model.dart';
 import 'package:crazy_tweets_2/models/player_model.dart';

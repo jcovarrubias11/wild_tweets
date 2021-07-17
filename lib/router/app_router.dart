@@ -21,7 +21,7 @@ class AppRoutes {
 class AppRouter {
   static Route<dynamic> onGenerateRoute(
       RouteSettings settings, FirebaseAuth firebaseAuth) {
-    final args = settings.arguments;
+    // final args = settings.arguments;
     switch (settings.name) {
       case AppRoutes.landingPage:
         // return MaterialPageRoute<dynamic>(
@@ -179,6 +179,7 @@ class AppRouter {
           },
         );
       default:
+        // ignore: todo
         // TODO: Throw
         return null;
     }

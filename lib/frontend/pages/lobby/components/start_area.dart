@@ -1,6 +1,4 @@
 import 'package:crazy_tweets_2/frontend/pages/lobby/components/creator_start_button.dart';
-import 'package:crazy_tweets_2/frontend/pages/lobby/components/non_leader_message.dart';
-import 'package:crazy_tweets_2/frontend/pages/lobby/lobby.dart';
 import 'package:crazy_tweets_2/main.dart';
 import 'package:crazy_tweets_2/models/lobby_model.dart';
 import 'package:flutter/material.dart';

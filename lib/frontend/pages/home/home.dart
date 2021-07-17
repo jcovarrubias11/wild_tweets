@@ -30,13 +30,13 @@ class HomePage extends HookWidget {
         // ),
         );
 
-    var textSubtitle = Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: Text(
-        "TWEETS",
-        style: Theme.of(context).primaryTextTheme.headline1,
-      ),
-    );
+    // var textSubtitle = Padding(
+    //   padding: const EdgeInsets.only(left: 20),
+    //   child: Text(
+    //     "TWEETS",
+    //     style: Theme.of(context).primaryTextTheme.headline1,
+    //   ),
+    // );
 
     final joinButton = Material(
       elevation: 5.0,

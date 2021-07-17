@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:crazy_tweets_2/frontend/pages/game/game.dart';
 import 'package:crazy_tweets_2/frontend/pages/lobby/lobby.dart';
@@ -121,7 +119,7 @@ class LeaderboardList extends HookWidget {
                         ]
                       : [
                           TypewriterAnimatedText(
-                              "${finalLoser} Has Been Impeached!"),
+                              "$finalLoser Has Been Impeached!"),
                         ],
                   isRepeatingAnimation:
                       finalLoser == player.player ? true : false,

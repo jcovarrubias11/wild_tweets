@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:crazy_tweets_2/frontend/pages/game/components/null_lobby.dart';
 import 'package:crazy_tweets_2/frontend/pages/lobby/lobby.dart';
 import 'package:crazy_tweets_2/main.dart';
 import 'package:crazy_tweets_2/models/player_model.dart';

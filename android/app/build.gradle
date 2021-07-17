@@ -63,11 +63,6 @@ android {
         release {
             signingConfig signingConfigs.release
         }
-
-        debug {
-            applicationIdSuffix ".debug"
-            isDebuggable true
-        }
     }
 }
 

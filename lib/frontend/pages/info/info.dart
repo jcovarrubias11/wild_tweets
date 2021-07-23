@@ -17,6 +17,7 @@ class InfoPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final infoProvider = useProvider(infoStateProvider.state);
+    final CarouselController _controller = CarouselController();
     final List<Widget> sliderList = [
       SwipeSlider(),
       ChooseLose(),
@@ -38,6 +39,7 @@ class InfoPage extends HookWidget {
               children: <Widget>[
                 Expanded(
                   child: CarouselSlider(
+                      carouselController: _controller,
                       options: CarouselOptions(
                           height: MediaQuery.of(context).size.height - 50,
                           enableInfiniteScroll: false,
@@ -52,7 +54,7 @@ class InfoPage extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: sliderList.asMap().entries.map((entry) {
                     return GestureDetector(
-                      // onTap: () => _controller.animateToPage(entry.key),
+                      onTap: () => _controller.animateToPage(entry.key),
                       child: Container(
                         width: 12.0,
                         height: 12.0,

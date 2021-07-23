@@ -1,6 +1,8 @@
 import 'package:crazy_tweets_2/main.dart';
+import 'package:crazy_tweets_2/models/ad_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/all.dart';
 
 class JoinPage extends HookWidget {
@@ -9,6 +11,12 @@ class JoinPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
+    final interAdProvider = useProvider(adProvider.state);
+
+    InterstitialAd interAd =
+        AdModel(interAdProvider.initialization).getNewInterAd();
+
+    interAd.load();
 
     final String _bothEmpty = "You gotta enter a Lobby Code and a Name";
     final String _playerEmpty = "You gotta enter a Name";
@@ -92,6 +100,7 @@ class JoinPage extends HookWidget {
                   _nameController.text,
                   _lobbyController.text.toUpperCase(),
                   auth.currentUser.uid.toString()),
+              interAd.show(),
             }
         },
         child: Text(
@@ -131,7 +140,7 @@ class JoinPage extends HookWidget {
           context.read(playerStateProvider).reset(),
           Navigator.of(context).pop()
         },
-        tooltip: 'Next',
+        tooltip: 'Back',
         child: Icon(Icons.arrow_back),
         elevation: 1.0,
         backgroundColor: Color.fromRGBO(255, 255, 255, 0.2),

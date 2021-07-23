@@ -195,9 +195,8 @@ class LobbyPage extends HookWidget {
                               height: 25,
                             ),
                             StartArea(
-                              lobby: lobby,
-                              deletePlayer: _deletePlayer,
-                            ),
+                                lobby: lobby,
+                                deletePlayer: _deletePlayer),
                             SizedBox(
                               height: 25,
                             ),

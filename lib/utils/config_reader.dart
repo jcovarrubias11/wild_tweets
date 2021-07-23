@@ -36,4 +36,12 @@ abstract class ConfigReader {
   static String getAndroidAdId() {
     return _config['androidAdId'] as String;
   }
+
+  static String getAndroidInterAdId() {
+    return _config['androidInterAdId'] as String;
+  }
+
+  static String getiOSInterAdId() {
+    return _config['iosInterAdId'] as String;
+  }
 }

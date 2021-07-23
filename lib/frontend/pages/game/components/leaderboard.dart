@@ -91,7 +91,7 @@ class LeaderboardList extends HookWidget {
               List<dynamic> item = players[index];
               return GestureDetector(
                 onTap: playersDone
-                    ? index == 0
+                    ? (index == 0 || gameState.submittedName)
                         ? null
                         : () => {
                               context

@@ -42,7 +42,7 @@ class CreatorStartButton extends HookWidget {
                       .read(firebaseDatabaseServiceProvider)
                       .updateLobbyAfterStart(lobby: playerProvider.lobbyCode),
                   await Navigator.of(context)
-                      .popAndPushNamed(AppRoutes.gamePage)
+                      .popAndPushNamed(AppRoutes.infoPage)
                 },
               ),
               TextButton(
@@ -68,10 +68,10 @@ class CreatorStartButton extends HookWidget {
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: playerProvider.isCreator
-                ? () => showTheDialog(context)
+                ? () async => {showTheDialog(context)}
                 : () async => {
                       await Navigator.of(context)
-                          .popAndPushNamed(AppRoutes.gamePage)
+                          .popAndPushNamed(AppRoutes.infoPage)
                     },
             child: Text(
               "Start Game",

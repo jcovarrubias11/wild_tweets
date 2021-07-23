@@ -1,7 +1,9 @@
 import 'package:crazy_tweets_2/main.dart';
+import 'package:crazy_tweets_2/models/ad_model.dart';
 import 'package:crazy_tweets_2/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/all.dart';
 
 class CreatePage extends HookWidget {
@@ -11,6 +13,12 @@ class CreatePage extends HookWidget {
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
     final _nameController = useTextEditingController();
+    final interAdProvider = useProvider(adProvider.state);
+
+    InterstitialAd interAd =
+        AdModel(interAdProvider.initialization).getNewInterAd();
+
+    interAd.load();
 
     var textTitle = Padding(
       padding: const EdgeInsets.only(left: 20),
@@ -82,9 +90,10 @@ class CreatePage extends HookWidget {
             {
               context.read(firebaseDatabaseServiceProvider).createLobby(context,
                   _nameController.text, auth.currentUser.uid.toString()),
-              await Navigator.of(context).pushNamed(
+              Navigator.of(context).pushNamed(
                 AppRoutes.lobbyPage,
-              )
+              ),
+              interAd.show(),
             }
         },
         child: Text(

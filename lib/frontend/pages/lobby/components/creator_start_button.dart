@@ -112,7 +112,7 @@ class CreatorStartButton extends HookWidget {
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: () async => {
               await deletePlayer(playerProvider.lobbyCode),
-              context.read(playerStateProvider).reset(),
+              context.read(playerStateProvider.notifier).reset(),
               Navigator.of(context).popUntil((route) => route.isFirst)
             },
             child: DefaultTextStyle(

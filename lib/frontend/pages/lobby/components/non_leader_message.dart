@@ -9,7 +9,7 @@ class NonLobbyLeader extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final playerProvider = useProvider(playerStateProvider.state);
+    final playerProvider = useProvider(playerStateProvider);
     final lobbyFuture =
         useProvider(lobbyGetFutureProvider(playerProvider.lobbyCode));
 

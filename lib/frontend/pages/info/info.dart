@@ -2,21 +2,22 @@ import 'package:crazy_tweets_2/frontend/pages/info/components/begin.dart';
 import 'package:crazy_tweets_2/frontend/pages/info/components/chooselose.dart';
 import 'package:crazy_tweets_2/frontend/pages/info/components/loserinfo.dart';
 import 'package:crazy_tweets_2/frontend/pages/info/components/swiper.dart';
+import 'package:crazy_tweets_2/models/info_model.dart';
 import 'package:crazy_tweets_2/providers/info_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final infoStateProvider =
-    StateNotifierProvider<InfoProvider>((ref) => InfoProvider());
+    StateNotifierProvider<InfoProvider, Info>((ref) => InfoProvider());
 
 class InfoPage extends HookWidget {
   const InfoPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final infoProvider = useProvider(infoStateProvider.state);
+    final infoProvider = useProvider(infoStateProvider);
     final CarouselController _controller = CarouselController();
     final List<Widget> sliderList = [
       SwipeSlider(),
@@ -46,7 +47,7 @@ class InfoPage extends HookWidget {
                           viewportFraction: 1.0,
                           enlargeCenterPage: false,
                           onPageChanged: (index, reason) {
-                            context.read(infoStateProvider).setPage(index);
+                            context.read(infoStateProvider.notifier).setPage(index);
                           }),
                       items: sliderList),
                 ),

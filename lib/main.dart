@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:crazy_tweets_2/models/ad_model.dart';
+import 'package:crazy_tweets_2/models/player_model.dart';
 import 'package:flutter/services.dart';
 import 'package:crazy_tweets_2/auth_widget.dart';
 import 'package:crazy_tweets_2/frontend/pages/home/home.dart';
@@ -16,7 +18,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Authentication Providers
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
@@ -30,7 +32,7 @@ final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
 final authStateChangesProvider = StreamProvider<User>(
     (ref) => ref.watch(firebaseAuthProvider).authStateChanges());
 
-final signInProvider = StateNotifierProvider<FirebaseAuthService>(
+final signInProvider = StateNotifierProvider<FirebaseAuthService, void>(
     (ref) => FirebaseAuthService(ref.watch(firebaseAuthProvider)));
 //
 
@@ -47,15 +49,15 @@ final databaseProvider = Provider<FirebaseDatabase>((ref) {
 // DB function calls
 final firebaseDatabaseServiceProvider = Provider<FirebaseDatabaseService>(
     (ref) => FirebaseDatabaseService(
-        ref.watch(databaseProvider), ref.watch(playerStateProvider)));
+        ref.watch(databaseProvider), ref.watch(playerStateProvider.notifier)));
 //
 
 //Home Page Provider
 final playerStateProvider =
-    StateNotifierProvider<PlayerProvider>((ref) => PlayerProvider());
+    StateNotifierProvider<PlayerProvider, Player>((ref) => PlayerProvider());
 //
 
-final adProvider = StateNotifierProvider<AdProvider>((ref) => AdProvider());
+final adProvider = StateNotifierProvider<AdProvider, AdModel>((ref) => AdProvider());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -96,7 +98,7 @@ class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseAuth = context.read(firebaseAuthProvider);
-    context.read(adProvider).setAdModel(initialization: initFuture);
+    context.read(adProvider.notifier).setAdModel(initialization: initFuture);
 
     return MaterialApp(
       theme: GeneralTheme().getTheme(),

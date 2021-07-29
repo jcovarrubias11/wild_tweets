@@ -14,7 +14,7 @@ class StartArea extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final playerProvider = useProvider(playerStateProvider.state);
+    final playerProvider = useProvider(playerStateProvider);
 
     return Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0),

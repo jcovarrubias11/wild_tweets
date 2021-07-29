@@ -1,7 +1,7 @@
 import 'package:crazy_tweets_2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NullLobby extends HookWidget {
   const NullLobby({
@@ -40,7 +40,7 @@ class NullLobby extends HookWidget {
                     minWidth: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                     onPressed: () async {
-                      context.read(playerStateProvider).reset();
+                      context.read(playerStateProvider.notifier).reset();
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: Text(

@@ -1,7 +1,7 @@
 import 'package:crazy_tweets_2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LandingPage extends HookWidget {
   const LandingPage({Key key}) : super(key: key);
@@ -91,7 +91,7 @@ class LandingPage extends HookWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.read(signInProvider).signInAnon(),
+          onPressed: () => context.read(signInProvider.notifier).signInAnon(),
           tooltip: 'Next',
           child: Icon(Icons.arrow_forward),
           elevation: 1.0,

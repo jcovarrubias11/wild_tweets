@@ -7,21 +7,21 @@ import 'package:crazy_tweets_2/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:crazy_tweets_2/main.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 //Lobby Stream From Firebase Realtime Database
 final lobbyStreamProvider = StreamProvider.autoDispose.family<Lobby, String>(
     (ref, lobby) => FirebaseDatabaseService(
-            ref.watch(databaseProvider), ref.watch(playerStateProvider))
+            ref.watch(databaseProvider), ref.watch(playerStateProvider.notifier))
         .lobbyStream(lobby: lobby));
 
 final lobbyGetFutureProvider = FutureProvider.autoDispose.family<Lobby, String>(
     (ref, lobby) => FirebaseDatabaseService(
-            ref.watch(databaseProvider), ref.watch(playerStateProvider))
+            ref.watch(databaseProvider), ref.watch(playerStateProvider.notifier))
         .getLobby(lobby: lobby));
 
 final playerFutureSetTweets = FutureProvider.autoDispose<void>(
-    (ref) => ref.watch(playerStateProvider).getTweets());
+    (ref) => ref.watch(playerStateProvider.notifier).getTweets());
 
 class LobbyPage extends HookWidget {
   const LobbyPage({Key key}) : super(key: key);
@@ -29,7 +29,7 @@ class LobbyPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
-    final playerProvider = useProvider(playerStateProvider.state);
+    final playerProvider = useProvider(playerStateProvider);
     final databaseService = useProvider(firebaseDatabaseServiceProvider);
     final lobbyStream =
         useProvider(lobbyStreamProvider(playerProvider.lobbyCode));
@@ -79,13 +79,13 @@ class LobbyPage extends HookWidget {
                     onPressed: playerProvider.isCreator
                         ? () async {
                             await _deactivateLobby(playerProvider.lobbyCode);
-                            context.read(playerStateProvider).reset();
+                            context.read(playerStateProvider.notifier).reset();
                             Navigator.of(context)
                                 .popUntil((route) => route.isFirst);
                           }
                         : () async {
                             await _deletePlayer(playerProvider.lobbyCode);
-                            context.read(playerStateProvider).reset();
+                            context.read(playerStateProvider.notifier).reset();
                             Navigator.of(context)
                                 .popUntil((route) => route.isFirst);
                           },
@@ -142,13 +142,13 @@ class LobbyPage extends HookWidget {
                       onPressed: playerProvider.isCreator
                           ? () async {
                               await _deactivateLobby(playerProvider.lobbyCode);
-                              context.read(playerStateProvider).reset();
+                              context.read(playerStateProvider.notifier).reset();
                               Navigator.of(context)
                                   .popUntil((route) => route.isFirst);
                             }
                           : () async {
                               await _deletePlayer(playerProvider.lobbyCode);
-                              context.read(playerStateProvider).reset();
+                              context.read(playerStateProvider.notifier).reset();
                               Navigator.of(context)
                                   .popUntil((route) => route.isFirst);
                             },

@@ -15,7 +15,7 @@ class LobbyList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final playerProvider = useProvider(playerStateProvider.state);
+    final playerProvider = useProvider(playerStateProvider);
 
     return Container(
         height: MediaQuery.of(context).size.height,

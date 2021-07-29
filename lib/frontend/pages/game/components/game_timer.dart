@@ -6,7 +6,7 @@ import 'package:crazy_tweets_2/models/player_model.dart';
 import 'package:crazy_tweets_2/providers/timer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 class Timer extends HookWidget {
@@ -16,8 +16,8 @@ class Timer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timerState = useProvider(timerStateProvider.state);
-    final gameState = useProvider(gameStateProvider.state);
+    final timerState = useProvider(timerStateProvider);
+    final gameState = useProvider(gameStateProvider);
 
     // return futureForStream.when(data: (duration) {
     //   final timerAnimation =
@@ -77,15 +77,15 @@ class QuestionTimerDisplay extends AnimatedWidget {
             playerName: player.player,
             stats: game.correct.toString());
         context
-            .read(playerStateProvider)
+            .read(playerStateProvider.notifier)
             .updateIncorrectAnswer(game.incorrect.toString());
 
         context
-            .read(playerStateProvider)
+            .read(playerStateProvider.notifier)
             .updateCorrectAnswer(game.correct.toString());
-        context.read(gameStateProvider).updateLiveGame(false);
+        context.read(gameStateProvider.notifier).updateLiveGame(false);
       } else {
-        context.read(timerStateProvider).updateTimerState(
+        context.read(timerStateProvider.notifier).updateTimerState(
             (animation.value * timerState.initialTime).toInt());
       }
     });

@@ -8,21 +8,22 @@ import 'package:crazy_tweets_2/frontend/pages/game/components/null_lobby.dart';
 import 'package:crazy_tweets_2/frontend/pages/game/components/tweet_list.dart';
 import 'package:crazy_tweets_2/frontend/pages/lobby/lobby.dart';
 import 'package:crazy_tweets_2/main.dart';
+import 'package:crazy_tweets_2/models/game_model.dart';
 import 'package:crazy_tweets_2/models/lobby_model.dart';
 import 'package:crazy_tweets_2/models/player_model.dart';
 import 'package:crazy_tweets_2/providers/game_provider.dart';
 import 'package:crazy_tweets_2/providers/timer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:random_string/random_string.dart';
 
 final gameStateProvider =
-    StateNotifierProvider.autoDispose<GameProvider>((ref) => GameProvider());
+    StateNotifierProvider.autoDispose<GameProvider, Game>((ref) => GameProvider());
 
-final timerStateProvider = StateNotifierProvider<TimerNotifier>((ref) =>
+final timerStateProvider = StateNotifierProvider<TimerNotifier, TimerModel>((ref) =>
     TimerNotifier(
-        ref.watch(databaseProvider), ref.watch(playerStateProvider.state)));
+        ref.watch(databaseProvider), ref.watch(playerStateProvider)));
 
 class GamePage extends HookWidget {
   const GamePage({Key key}) : super(key: key);
@@ -30,9 +31,9 @@ class GamePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
-    final playerState = useProvider(playerStateProvider.state);
+    final playerState = useProvider(playerStateProvider);
     final lobbyStream = useProvider(lobbyStreamProvider(playerState.lobbyCode));
-    final gameState = useProvider(gameStateProvider.state);
+    final gameState = useProvider(gameStateProvider);
     final databaseService = useProvider(firebaseDatabaseServiceProvider);
 
     Future<void> _deletePlayer(String lobby) async {
@@ -77,13 +78,13 @@ class GamePage extends HookWidget {
                 onPressed: playerState.isCreator
                     ? () async {
                         await _deactivateLobby(playerState.lobbyCode);
-                        context.read(playerStateProvider).reset();
+                        context.read(playerStateProvider.notifier).reset();
                         Navigator.of(context)
                             .popUntil((route) => route.isFirst);
                       }
                     : () async {
                         await _deletePlayer(playerState.lobbyCode);
-                        context.read(playerStateProvider).reset();
+                        context.read(playerStateProvider.notifier).reset();
                         Navigator.of(context)
                             .popUntil((route) => route.isFirst);
                       },
@@ -123,13 +124,13 @@ class GamePage extends HookWidget {
                 onPressed: playerState.isCreator
                     ? () async {
                         await _deactivateLobby(playerState.lobbyCode);
-                        context.read(playerStateProvider).reset();
+                        context.read(playerStateProvider.notifier).reset();
                         Navigator.of(context)
                             .popUntil((route) => route.isFirst);
                       }
                     : () async {
                         await _deletePlayer(playerState.lobbyCode);
-                        context.read(playerStateProvider).reset();
+                        context.read(playerStateProvider.notifier).reset();
                         Navigator.of(context)
                             .popUntil((route) => route.isFirst);
                       },
@@ -201,9 +202,9 @@ class GameView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timerState = useProvider(timerStateProvider.state);
-    final gameState = useProvider(gameStateProvider.state);
-    final adState = useProvider(adProvider.state);
+    final timerState = useProvider(timerStateProvider);
+    final gameState = useProvider(gameStateProvider);
+    final adState = useProvider(adProvider);
 
     List<dynamic> loserCount = [];
     int maxVotes;
@@ -243,7 +244,7 @@ class GameView extends HookWidget {
             ? () async {
                 await context.read(firebaseDatabaseServiceProvider).updateLoser(
                     lobby: playerState.lobbyCode, loser: gameState.nameVoted);
-                context.read(gameStateProvider).updatesubmittedName(true);
+                context.read(gameStateProvider.notifier).updatesubmittedName(true);
               }
             : () => {},
         child: !playersDone
@@ -292,7 +293,7 @@ class GameView extends HookWidget {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () => {
-          context.read(playerStateProvider).reset(),
+          context.read(playerStateProvider.notifier).reset(),
           Navigator.of(context).popUntil((route) => route.isFirst)
         },
         child: Text(

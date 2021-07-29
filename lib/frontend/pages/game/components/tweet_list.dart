@@ -5,7 +5,7 @@ import 'package:crazy_tweets_2/constants/pics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TweetList extends HookWidget {
   const TweetList(this.player, {Key key}) : super(key: key);
@@ -14,7 +14,7 @@ class TweetList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gameState = useProvider(gameStateProvider);
+    final gameState = useProvider(gameStateProvider.notifier);
 
     // ignore: unused_local_variable
     CardController controller;
@@ -138,12 +138,12 @@ class TweetList extends HookWidget {
         /// Get orientation & index of swiped card!
         if (orientation == CardSwipeOrientation.RIGHT &&
             player.currTweets[index][1] == true) {
-          context.read(gameStateProvider).updateCorrect();
+          context.read(gameStateProvider.notifier).updateCorrect();
         } else if (orientation == CardSwipeOrientation.LEFT &&
             player.currTweets[index][1] == false) {
-          context.read(gameStateProvider).updateCorrect();
+          context.read(gameStateProvider.notifier).updateCorrect();
         } else {
-          context.read(gameStateProvider).updateIncorrect();
+          context.read(gameStateProvider.notifier).updateIncorrect();
         }
         if (index == 19) {
           context.read(firebaseDatabaseServiceProvider).updatePlayerStats(
@@ -152,15 +152,15 @@ class TweetList extends HookWidget {
               // ignore: invalid_use_of_protected_member
               stats: gameState.state.correct.toString());
           context
-              .read(playerStateProvider)
+              .read(playerStateProvider.notifier)
               // ignore: invalid_use_of_protected_member
               .updateIncorrectAnswer(gameState.state.incorrect.toString());
 
           context
-              .read(playerStateProvider)
+              .read(playerStateProvider.notifier)
               // ignore: invalid_use_of_protected_member
               .updateCorrectAnswer(gameState.state.correct.toString());
-          context.read(gameStateProvider).updateLiveGame(false);
+          context.read(gameStateProvider.notifier).updateLiveGame(false);
         }
       },
     );

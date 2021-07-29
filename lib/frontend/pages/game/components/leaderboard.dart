@@ -65,13 +65,13 @@ class LeaderboardList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gameState = useProvider(gameStateProvider.state);
+    final gameState = useProvider(gameStateProvider);
 
     Timer startTimeout() {
       return Timer(
           Duration(seconds: 30),
           () => {
-                context.read(gameStateProvider).updateGameOver(true),
+                context.read(gameStateProvider.notifier).updateGameOver(true),
               });
     }
 
@@ -95,7 +95,7 @@ class LeaderboardList extends HookWidget {
                         ? null
                         : () => {
                               context
-                                  .read(gameStateProvider)
+                                  .read(gameStateProvider.notifier)
                                   .updateNameVoted(item[0]),
                             }
                     : () => {},
@@ -182,7 +182,7 @@ class LeaderboardList extends HookWidget {
                                           onPressed: () async {
                                             // Navigator.of(context).pop();
                                             context
-                                                .read(playerStateProvider)
+                                                .read(playerStateProvider.notifier)
                                                 .reset();
                                             Navigator.of(context).popUntil(
                                                 (route) => route.isFirst);
@@ -291,7 +291,7 @@ class LeaderboardList extends HookWidget {
                                           onPressed: () async {
                                             // Navigator.of(context).pop();
                                             context
-                                                .read(playerStateProvider)
+                                                .read(playerStateProvider.notifier)
                                                 .reset();
                                             Navigator.of(context).popUntil(
                                                 (route) => route.isFirst);

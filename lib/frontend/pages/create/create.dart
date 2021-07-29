@@ -4,7 +4,7 @@ import 'package:crazy_tweets_2/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreatePage extends HookWidget {
   const CreatePage({Key key}) : super(key: key);
@@ -13,7 +13,7 @@ class CreatePage extends HookWidget {
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
     final _nameController = useTextEditingController();
-    final interAdProvider = useProvider(adProvider.state);
+    final interAdProvider = useProvider(adProvider);
 
     InterstitialAd interAd =
         AdModel(interAdProvider.initialization).getNewInterAd();

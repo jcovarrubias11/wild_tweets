@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>23778610035-jnodijv49ggdul6l9iuvpknus67aioka.apps.googleusercontent.com</string>
+	<string>23778610035-guclqjbqrn5fj5t1pmo3lsbsbf3m40l9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.23778610035-jnodijv49ggdul6l9iuvpknus67aioka</string>
+	<string>com.googleusercontent.apps.23778610035-guclqjbqrn5fj5t1pmo3lsbsbf3m40l9</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>23778610035-l5bnkhek7ndi1qf6osligo62fhj0s4gi.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.jc.crazyTweets2</string>
+	<string>com.jc.niceTweets</string>
 	<key>PROJECT_ID</key>
 	<string>wildtweets-e54d7</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:23778610035:ios:1feeba35fb6ca39034d306</string>
+	<string>1:23778610035:ios:ed06697423ac464c34d306</string>
 	<key>DATABASE_URL</key>
 	<string>https://wildtweets-e54d7.firebaseio.com</string>
 </dict>

@@ -99,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  file:
-    dependency: transitive
-    description:
-      name: file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.1.0"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -160,11 +153,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_driver:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -210,11 +198,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.2"
-  fuchsia_remote_debug_protocol:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   google_mobile_ads:
     dependency: "direct main"
     description:
@@ -250,11 +233,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  integration_test:
-    dependency: "direct dev"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   intl:
     dependency: transitive
     description:
@@ -318,13 +296,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -332,6 +303,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+<<<<<<< Updated upstream
   process:
     dependency: transitive
     description:
@@ -339,6 +311,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+=======
+>>>>>>> Stashed changes
   quiver:
     dependency: transitive
     description:
@@ -428,13 +402,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
-  sync_http:
-    dependency: transitive
-    description:
-      name: sync_http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   term_glyph:
     dependency: transitive
     description:
@@ -463,6 +430,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+<<<<<<< Updated upstream
   vm_service:
     dependency: transitive
     description:
@@ -477,6 +445,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+=======
+>>>>>>> Stashed changes
   xml:
     dependency: transitive
     description:

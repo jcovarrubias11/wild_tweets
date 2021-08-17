@@ -48,5 +48,16 @@ const fakeTweets = [
   'Beautiful. Let\'s go for a better world.',
   'I can\'t support someone like this to run our country #Trump2020',
   'So many states flipped over night. Kind of suspicious if you ask me. A recount will show that most votes we\'re invaild and shouldn\'t be counted!',
-  'Sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeessssssssssh'
+  'Sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeessssssssssh',
+  'From here on out the only Corona I want is from Mexico and you drink it.',
+  'Exposing the confusion and mess surrounding the 2020 election.',
+  "wish eminem would just drop his mom's spaghetti recipe already.",
+  'Do NOT call me DUDE unless you want to be called an idiot. I have typos, especially when people are being stupid and I am trying to make my point, get over it.'
+  'We blew it guys!',
+  'You don’t have to agree with Kanye West but the mob can’t make me not love him. We are both dragon energy. He is my brother. I love everyone. I don’t agree with everything anyone does. That’s what makes us individuals. And we have the right to independent thought.',
+  'Wish the d*ckhead in the next room would either shut up or learn some  English so I would atleast know what he’s planning to bomb!',
+  'I just split up with my girlfriend, but like the Japanese say. They’ll be another one floating by any minute now.',
+  'I now believe global warming alarmists are unpatriotic racists knowingly misleading for their own ends. Good night.',
+  'I wish I was aloud to use the n word sometimes (in a non racist way of course).',
+  'As we reported last week, dead Americans voted in this election. We shared a few examples. But on Friday, we began to learn some of the specific dead voters reported to us as deceased are in fact alive.'
 ];

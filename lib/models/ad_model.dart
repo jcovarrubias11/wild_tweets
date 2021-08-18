@@ -1,10 +1,12 @@
 import 'dart:io';
-
+import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:crazy_tweets_2/utils/config_reader.dart';
 
-class AdModel {
-  AdModel(this.initialization);
+class AdState {
+  AdState({
+    @required this.initialization,
+  });
 
   Future<InitializationStatus> initialization;
 
@@ -39,5 +41,4 @@ class AdModel {
     onNativeAdImpression: (nativeAd) =>
         print('Native ad clicked: ${nativeAd.adUnitId}.'),
   );
-
 }

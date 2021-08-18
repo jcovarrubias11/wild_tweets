@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:crazy_tweets_2/auth_widget.dart';
 import 'package:crazy_tweets_2/frontend/pages/home/home.dart';
 import 'package:crazy_tweets_2/frontend/pages/landing/landing.dart';
-import 'package:crazy_tweets_2/providers/ad_provider.dart';
 import 'package:crazy_tweets_2/providers/player_provider.dart';
 import 'package:crazy_tweets_2/services/auth_services.dart';
 import 'package:crazy_tweets_2/router/app_router.dart';
@@ -57,12 +56,13 @@ final playerStateProvider =
     StateNotifierProvider<PlayerProvider, Player>((ref) => PlayerProvider());
 //
 
-final adProvider = StateNotifierProvider<AdProvider, AdModel>((ref) => AdProvider());
+final adStateProvider = ScopedProvider<AdState>(null);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigReader.initialize();
-  final initFuture = MobileAds.instance.initialize();
+  final initAdFuture = MobileAds.instance.initialize();
+  final adState = AdState(initialization: initAdFuture);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -86,19 +86,19 @@ Future<void> main() async {
   );
 
   runApp(ProviderScope(
-    child: MyApp(initFuture),
+    overrides: [
+      adStateProvider.overrideWithValue(adState)
+    ],
+    child: MyApp(),
   ));
 }
 
 class MyApp extends HookWidget {
-  MyApp(this.initFuture);
-
-  final Future<InitializationStatus> initFuture;
+  MyApp();
 
   @override
   Widget build(BuildContext context) {
     final firebaseAuth = context.read(firebaseAuthProvider);
-    context.read(adProvider.notifier).setAdModel(initialization: initFuture);
 
     return MaterialApp(
       theme: GeneralTheme().getTheme(),

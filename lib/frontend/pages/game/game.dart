@@ -18,12 +18,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:random_string/random_string.dart';
 
-final gameStateProvider =
-    StateNotifierProvider.autoDispose<GameProvider, Game>((ref) => GameProvider());
+final gameStateProvider = StateNotifierProvider.autoDispose<GameProvider, Game>(
+    (ref) => GameProvider());
 
-final timerStateProvider = StateNotifierProvider<TimerNotifier, TimerModel>((ref) =>
-    TimerNotifier(
-        ref.watch(databaseProvider), ref.watch(playerStateProvider)));
+final timerStateProvider =
+    StateNotifierProvider.autoDispose<TimerNotifier, TimerModel>((ref) =>
+        TimerNotifier(
+            ref.watch(databaseProvider), ref.watch(playerStateProvider)));
 
 class GamePage extends HookWidget {
   const GamePage({Key key}) : super(key: key);
@@ -204,7 +205,6 @@ class GameView extends HookWidget {
   Widget build(BuildContext context) {
     final timerState = useProvider(timerStateProvider);
     final gameState = useProvider(gameStateProvider);
-    final adState = useProvider(adProvider);
 
     List<dynamic> loserCount = [];
     int maxVotes;
@@ -244,7 +244,9 @@ class GameView extends HookWidget {
             ? () async {
                 await context.read(firebaseDatabaseServiceProvider).updateLoser(
                     lobby: playerState.lobbyCode, loser: gameState.nameVoted);
-                context.read(gameStateProvider.notifier).updatesubmittedName(true);
+                context
+                    .read(gameStateProvider.notifier)
+                    .updatesubmittedName(true);
               }
             : () => {},
         child: !playersDone
@@ -460,10 +462,7 @@ class GameView extends HookWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 11,
             color: Theme.of(context).accentColor,
-            child: Center(
-                child: AdBanner(
-              adModel: adState,
-            ))),
+            child: Center(child: AdBanner())),
       ],
     );
   }

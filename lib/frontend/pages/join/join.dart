@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart';
 
 class JoinPage extends HookWidget {
   const JoinPage({Key key}) : super(key: key);
@@ -11,12 +12,18 @@ class JoinPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
-    final interAdProvider = useProvider(adProvider);
 
-    InterstitialAd interAd =
-        AdModel(interAdProvider.initialization).getNewInterAd();
+    InterstitialAd interAd;
 
-    interAd.load();
+    final adState = context.read(adStateProvider);
+    adState.initialization.then((status) {
+      print("status: " + status.toString());
+      interAd = InterstitialAd(
+          adUnitId: adState.interstitialAdUnitId,
+          request: AdRequest(),
+          listener: adState.adListener);
+      interAd.load();
+    });
 
     final String _bothEmpty = "You gotta enter a Lobby Code and a Name";
     final String _playerEmpty = "You gotta enter a Name";

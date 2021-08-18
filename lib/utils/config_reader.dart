@@ -44,4 +44,13 @@ abstract class ConfigReader {
   static String getiOSInterAdId() {
     return _config['iosInterAdId'] as String;
   }
+
+    static String getTestBannerAdId() {
+    return _config['bannerTestAdID'] as String;
+  }
+
+  static String getTestInterAdId() {
+    return _config['interstitialTestId'] as String;
+  }
+
 }

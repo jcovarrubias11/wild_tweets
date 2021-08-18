@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:crazy_tweets_2/frontend/pages/game/game.dart';
 import 'package:crazy_tweets_2/main.dart';
 import 'package:crazy_tweets_2/models/player_model.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class TweetList extends HookWidget {
   const TweetList(this.player, {Key key}) : super(key: key);
@@ -55,64 +58,32 @@ class TweetList extends HookWidget {
                             ),
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.53,
+                            height: MediaQuery.of(context).size.height * 0.4,
                             width: MediaQuery.of(context).size.width * 0.54,
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 8.0, top: 2.0),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text('Donald J. Trump',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text('@realDonaldTrump'),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text(
-                                            player.currTweets[index][0].text,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(children: [
-                                      Icon(Icons.favorite),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                      ),
-                                      Text(player.currTweets[index][0].favorites
-                                          .toString()),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                      ),
-                                      Icon(Icons.replay),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                      ),
-                                      Text(player.currTweets[index][0].retweets
-                                          .toString())
-                                    ])
-                                  ]),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text('Donald J. Trump',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text('@realDonaldTrump'),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(HtmlUnescape().convert(
+                                      player.currTweets[index][0].text)),
+                                ],
+                              ),
                             ),
                           ),
                         ])

@@ -66,17 +66,32 @@ class LeaderboardList extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final gameState = useProvider(gameStateProvider);
+    Timer timer;
+
+    useEffect(() {
+      print('hello');
+      return () {
+        timer.cancel();
+      };
+    }, []);
 
     Timer startTimeout() {
-      return Timer(
+      return new Timer(
           Duration(seconds: 30),
           () => {
-                context.read(gameStateProvider.notifier).updateGameOver(true),
+                print(timer.isActive),
+                if (timer.isActive)
+                  {
+                    print("how?"),
+                    context
+                        .read(gameStateProvider.notifier)
+                        .updateGameOver(true)
+                  }
               });
     }
 
     if (playersDone) {
-      startTimeout();
+      timer = startTimeout();
     }
 
     players.sort((a, b) {
@@ -182,7 +197,8 @@ class LeaderboardList extends HookWidget {
                                           onPressed: () async {
                                             // Navigator.of(context).pop();
                                             context
-                                                .read(playerStateProvider.notifier)
+                                                .read(playerStateProvider
+                                                    .notifier)
                                                 .reset();
                                             Navigator.of(context).popUntil(
                                                 (route) => route.isFirst);
@@ -291,7 +307,8 @@ class LeaderboardList extends HookWidget {
                                           onPressed: () async {
                                             // Navigator.of(context).pop();
                                             context
-                                                .read(playerStateProvider.notifier)
+                                                .read(playerStateProvider
+                                                    .notifier)
                                                 .reset();
                                             Navigator.of(context).popUntil(
                                                 (route) => route.isFirst);

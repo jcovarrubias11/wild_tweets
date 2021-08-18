@@ -13,12 +13,18 @@ class CreatePage extends HookWidget {
   Widget build(BuildContext context) {
     final auth = useProvider(firebaseAuthProvider);
     final _nameController = useTextEditingController();
-    final interAdProvider = useProvider(adProvider);
 
-    InterstitialAd interAd =
-        AdModel(interAdProvider.initialization).getNewInterAd();
+    InterstitialAd interAd;
 
-    interAd.load();
+    final adState = context.read(adStateProvider);
+    adState.initialization.then((status) {
+      print("status: " + status.toString());
+      interAd = InterstitialAd(
+          adUnitId: adState.interstitialAdUnitId,
+          request: AdRequest(),
+          listener: adState.adListener);
+      interAd.load();
+    });
 
     var textTitle = Padding(
       padding: const EdgeInsets.only(left: 20),

@@ -19,7 +19,7 @@ class SwipeSlider extends HookWidget {
         Container(
           height: 60,
           child: Text(
-            "You will be presented with 25 tweets. You have 2 minutes to decipher which " +
+            "You will be presented with 20 tweets. You have 2 minutes to decipher which " +
                 "ones are real and which aren't. ",
             textAlign: TextAlign.center,
             style: Theme.of(context)

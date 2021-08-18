@@ -69,7 +69,6 @@ class LeaderboardList extends HookWidget {
     Timer timer;
 
     useEffect(() {
-      print('hello');
       return () {
         timer.cancel();
       };
@@ -78,16 +77,8 @@ class LeaderboardList extends HookWidget {
     Timer startTimeout() {
       return new Timer(
           Duration(seconds: 30),
-          () => {
-                print(timer.isActive),
-                if (timer.isActive)
-                  {
-                    print("how?"),
-                    context
-                        .read(gameStateProvider.notifier)
-                        .updateGameOver(true)
-                  }
-              });
+          () =>
+              {context.read(gameStateProvider.notifier).updateGameOver(true)});
     }
 
     if (playersDone) {

@@ -18,14 +18,14 @@ class HomePage extends HookWidget {
           style: Theme.of(context).primaryTextTheme.headline1,
           child: AnimatedTextKit(
             animatedTexts: [
-              RotateAnimatedText('SWEET'),
+              RotateAnimatedText('NICE'),
               RotateAnimatedText('TWEETS'),
             ],
             repeatForever: true,
           ),
         )
         // child: Text(
-        //   "SWEET",
+        //   "NICE",
         //   style: Theme.of(context).primaryTextTheme.headline1,
         // ),
         );

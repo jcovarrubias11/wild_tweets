@@ -32,7 +32,7 @@ class JoinPage extends HookWidget {
     var textTitle = Padding(
       padding: const EdgeInsets.only(left: 20),
       child: Text(
-        "SWEET",
+        "NICE",
         style: Theme.of(context).primaryTextTheme.headline1,
       ),
     );
